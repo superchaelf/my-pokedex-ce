@@ -15,6 +15,10 @@ This will get a copy of the project installed locally. To install all of its dep
 
 ```bash
 npm install && npm run start
+```
+
+ ## Access to deplyed version
 
 This application is deployed using AWS, to access it please use the direct link below : 
-http://mypokedex-ce.s3-website.eu-west-3.amazonaws.com/list
+
+[http://mypokedex-ce.s3-website.eu-west-3.amazonaws.com/list]
