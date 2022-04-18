@@ -17,7 +17,13 @@ This will get a copy of the project installed locally. To install all of its dep
 npm install && npm run start
 ```
 
- ## Access to deplyed version
+To run tests and test coverage use the command below : 
+
+```bash
+ng test --source-map --code-coverage
+```
+
+ ## Access to deployed version
 
 This application is deployed using AWS, to access it please use the direct link below : 
 
