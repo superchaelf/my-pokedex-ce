@@ -1,0 +1,12 @@
+<div [ngbCollapse]="!isSideBarCollapsed" class="collapse navbar-collapse" id="sideBarContent">
+    <div class="border-end" id="sidebar-wrapper">
+        <div class="sidebar-heading border-bottom bg-light">
+            <img src="assets/img/myLogo.png" alt="RSS Feed">
+        </div>
+            <div class="list-group list-group-flush">
+                <a class="list-group-item list-group-item-action list-group-item-light p-3" routerLinkActive="active" routerLink="/list"><i class="bi bi-card-list"></i> List of Pokemons</a>
+                <a class="list-group-item list-group-item-action list-group-item-light p-3" routerLinkActive="active" routerLink="/personal"><i class="bi bi-file-person-fill"></i> My personal list</a>
+                <a class="list-group-item list-group-item-action list-group-item-light p-3" routerLinkActive="active" routerLink="/wishlist"><i class="bi bi-bag-heart-fill"></i> My wishlist</a>
+            </div>
+    </div>
+</div>

@@ -1,0 +1,71 @@
+<p-toast></p-toast>
+<div class="page-header">
+    <h1>List of Pokemons</h1>      
+</div>
+<div class="card-body">
+    <div class="lead">
+        <p-table #dt [value]="listPokemons" [paginator]="true" [rows]="4" responsiveLayout="scroll"
+        [totalRecords]="count" [lazy]="isLazy" (onLazyLoad)="loadPokemons($event)" [loading]="loading" [rowsPerPageOptions]="[4,8,16]" [globalFilterFields]="['name','weight','height','base_experience']" >
+        <ng-template pTemplate="caption">
+            <div class="flex" style="text-align: right;">
+                <span class="p-input-icon-right ml-auto">
+                    <i class="pi pi-search"></i>
+                    <input pInputText type="text" (input)="applyFilterGlobal($event, 'contains')" placeholder="Search pokemon" />
+                </span>
+            </div>  
+        </ng-template>
+        <ng-template pTemplate="header">
+            <tr>
+                <th></th>
+                <th>Name</th>
+                <th>Weight</th>
+                <th>Height</th>
+                <th>Experience</th>
+                <th>Actions</th>
+            </tr>
+        </ng-template>
+        <ng-template pTemplate="body" let-pokemon>
+            <tr>
+                <td><img src="{{pokemon.sprites.front_default}}"></td>
+                <td>{{pokemon.name.toUpperCase()}}</td>
+                <td>{{pokemon.weight}}</td>
+                <td>{{pokemon.height}}</td>
+                <td>{{pokemon.base_experience}}</td>
+                <td>
+                    <button pButton pRipple icon="pi pi-search-plus" class="p-button-rounded p-button-success mr-2" (click)="showDetailPokemon(pokemon)"></button>
+                    <button pButton pRipple icon="pi pi-clone" class="p-button-rounded p-button-warning" [disabled]="pokemon.disabledCatch" (click)="catchPokemon(pokemon)"></button>
+                    <button pButton pRipple icon="pi pi-heart" class="p-button-rounded p-button-error" [disabled]="pokemon.disabledWish" (click)="addToWishlist(pokemon)" pTooltip="Add to wishlist"></button>
+                </td>
+            </tr>
+        </ng-template>
+        <ng-template pTemplate="emptymessage">
+            <tr>
+                <td colspan="7">No pokemon found.</td>
+            </tr>
+        </ng-template>
+    </p-table>
+        
+    </div>
+</div>
+
+<p-dialog [(visible)]="pokemonDialog" [style]="{width: '450px'}" header="Pokemon Details" [modal]="true" styleClass="p-fluid">
+    <ng-template pTemplate="content">
+        <p-card header="{{pokemon.name.toUpperCase()}} {{pokemon.base_experience}}" [style]="{width: '360px'}" styleClass="p-card-shadow">
+            <ng-template pTemplate="header">
+                <img alt="Card" [src]="pokemon.sprites.front_shiny" width="200" height="200">
+            </ng-template>
+            <div class="field">
+                <ul *ngFor="let ability of pokemon.abilities">
+                    <li>Abilities :  {{ability.ability.name}}</li>
+                </ul>
+                <ul *ngFor="let type of pokemon.types">
+                    <li>Types : {{type.type.name}}</li>
+                </ul>    
+            </div>
+        </p-card>
+
+    </ng-template>
+
+</p-dialog>
+
+<p-confirmDialog [style]="{width: '450px'}"></p-confirmDialog>
